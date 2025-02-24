@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 
 
-
 import java.util.Optional;
 
 @Service
@@ -31,4 +30,5 @@ public class GreetingService {
         Optional<GreetingEntity> greeting = greetingRepository.findById(id);
         return greeting.orElseThrow(() -> new RuntimeException("Greeting not found with ID: " + id));
     }
+}
 }

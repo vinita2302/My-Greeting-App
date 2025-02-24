@@ -1,4 +1,7 @@
+
+package com.spring.My_Greetin_App;
 package com.spring.My_Greeting_App;
+
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

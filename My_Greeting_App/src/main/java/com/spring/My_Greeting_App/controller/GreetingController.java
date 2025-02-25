@@ -1,18 +1,17 @@
-package com.spring.My_Greetin_App.controller;
+package com.spring.My_Greeting_App.controller;
 
-import com.spring.My_Greetin_App.model.Greeting;
 
-import com.spring.My_Greetin_App.model.GreetingEntity;
-import com.spring.My_Greetin_App.model.UserDTO;
-import com.spring.My_Greetin_App.services.GreetingService;
+
+
+import com.spring.My_Greeting_App.model.Greeting;
+import com.spring.My_Greeting_App.model.GreetingEntity;
+import com.spring.My_Greeting_App.model.UserDTO;
+import com.spring.My_Greeting_App.service.GreetingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 
-import com.spring.My_Greetin_App.model.UserDTO;
-import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/hello")
@@ -26,15 +25,9 @@ public class GreetingController {
         return ResponseEntity.ok(new Greeting(greetingService.getGreetingMessage()));
     }
 
-    @GetMapping("/greetings")
-    public List<GreetingEntity> getAllGreetings() {
-        return greetingService.getAllGreetings();
-    }
-
     @GetMapping("/greeting/{id}")
-    public ResponseEntity<GreetingEntity> getGreetingById(@PathVariable Long id) {
-        GreetingEntity greeting = greetingService.getGreetingById(id);
-        return ResponseEntity.ok(greeting);
+    public GreetingEntity getGreetingById(@PathVariable Long id) {
+        return greetingService.getGreetingById(id);
     }
 
     @PostMapping("/greeting")
@@ -43,7 +36,6 @@ public class GreetingController {
         GreetingEntity savedGreeting = greetingService.saveGreetingMessage(message);
         return ResponseEntity.status(201).body(savedGreeting);
     }
-
     private String generateGreetingMessage(String firstName, String lastName) {
         if (firstName != null && !firstName.isEmpty() && lastName != null && !lastName.isEmpty()) {
             return "Hello " + firstName + " " + lastName + " from BridgeLabz!";
@@ -57,24 +49,23 @@ public class GreetingController {
     }
 }
 
-    @GetMapping("/greeting")
-    public Greeting getGreeting() {
-        return new Greeting("Hello from BridgeLabz!");
+import com.spring.My_Greeting_App.model.Greeting;
+import com.spring.My_Greeting_App.model.UserDTO;
+import com.spring.My_Greeting_App.service.GreetingService;
+import org.springframework.web.bind.annotation.*;
+
+@RestController
+@RequestMapping("/greeting")
+public class GreetingController {
+
+    private final GreetingService greetingService;
+
+    public GreetingController(GreetingService greetingService) {
+        this.greetingService = greetingService;
     }
 
-    @PostMapping("/greeting")
-    public Greeting createGreeting(@RequestBody UserDTO user) {
-        return new Greeting("Hello " + user.getFirstName() + " " + user.getLastName() + " from BridgeLabz!");
-    }
-
-    @PutMapping("/greeting")
-    public Greeting updateGreeting(@RequestBody UserDTO user) {
-        return new Greeting("Updated greeting for " + user.getFirstName() + " " + user.getLastName());
-    }
-
-    @DeleteMapping("/greeting")
-    public Greeting deleteGreeting() {
-        return new Greeting("Greeting deleted successfully.");
+    @PostMapping
+    public Greeting getGreeting(@RequestBody(required = false) UserDTO user) {
+        return greetingService.getGreeting(user);
     }
 }
-

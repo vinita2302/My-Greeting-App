@@ -7,8 +7,10 @@ public class Greeting {
     public Greeting() {
     }
 
+
 public class Greeting {
     private String message;
+
 
     public Greeting(String message) {
         this.message = message;

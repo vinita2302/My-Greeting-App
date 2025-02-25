@@ -5,7 +5,6 @@ public class UserDTO {
     private String firstName;
     private String lastName;
 
-
     public UserDTO() {
     }
 
@@ -13,7 +12,6 @@ public class UserDTO {
         this.firstName = firstName;
         this.lastName = lastName;
     }
-
 
     public String getFirstName() {
         return firstName;
@@ -30,4 +28,7 @@ public class UserDTO {
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
+
+}
+
 }

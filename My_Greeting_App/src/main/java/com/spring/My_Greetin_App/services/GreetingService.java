@@ -1,5 +1,8 @@
 package com.spring.My_Greetin_App.services;
 
+
+import com.spring.My_Greetin_App.model.Greeting;
+
 import com.spring.My_Greetin_App.model.GreetingEntity;
 import com.spring.My_Greetin_App.repository.GreetingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,11 +43,22 @@ public class GreetingService {
         }
     }
 
+    public void deleteGreeting(Long id) {
+        if (greetingRepository.existsById(id)) {
+            greetingRepository.deleteById(id);
+        } else {
+            throw new RuntimeException("Greeting not found with ID: " + id);
+        }
+    }
+
 
     public GreetingEntity saveGreetingMessage(String message) {
         GreetingEntity greeting = new GreetingEntity(message);
         return greetingRepository.save(greeting);
     }
+
+}
+
 
     public GreetingEntity getGreetingById(Long id) {
         Optional<GreetingEntity> greeting = greetingRepository.findById(id);
@@ -58,3 +72,4 @@ public class GreetingService {
 
     }
 }
+

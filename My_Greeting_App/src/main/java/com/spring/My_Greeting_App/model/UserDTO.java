@@ -1,4 +1,4 @@
-package com.spring.My_Greetin_App.model;
+package com.spring.My_Greeting_App.model;
 
 
 public class UserDTO {
@@ -7,6 +7,8 @@ public class UserDTO {
 
     public UserDTO() {
     }
+
+    public UserDTO() {}
 
     public UserDTO(String firstName, String lastName) {
         this.firstName = firstName;
@@ -28,7 +30,4 @@ public class UserDTO {
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
-
-}
-
 }

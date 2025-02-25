@@ -1,4 +1,4 @@
-package com.spring.My_Greetin_App.model;
+package com.spring.My_Greeting_App.model;
 
 
 import jakarta.persistence.*;
@@ -31,7 +31,4 @@ public class GreetingEntity {
     public void setMessage(String message) {
         this.message = message;
     }
-
-}
-
 }

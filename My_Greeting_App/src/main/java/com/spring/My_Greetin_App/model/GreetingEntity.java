@@ -1,6 +1,5 @@
 package com.spring.My_Greetin_App.model;
 
-
 import jakarta.persistence.*;
 
 @Entity

@@ -2,6 +2,7 @@ package com.spring.My_Greetin_App.controller;
 
 import com.spring.My_Greetin_App.model.Greeting;
 
+
 import com.spring.My_Greetin_App.model.GreetingEntity;
 import com.spring.My_Greetin_App.model.UserDTO;
 import com.spring.My_Greetin_App.services.GreetingService;
@@ -44,6 +45,13 @@ public class GreetingController {
         return ResponseEntity.status(201).body(savedGreeting);
     }
 
+
+    @PutMapping("/greeting/{id}")
+    public ResponseEntity<GreetingEntity> updateGreeting(@PathVariable Long id, @RequestBody Greeting updatedGreeting) {
+        GreetingEntity updatedEntity = greetingService.updateGreeting(id, updatedGreeting.getMessage());
+        return ResponseEntity.ok(updatedEntity);
+    }
+
     private String generateGreetingMessage(String firstName, String lastName) {
         if (firstName != null && !firstName.isEmpty() && lastName != null && !lastName.isEmpty()) {
             return "Hello " + firstName + " " + lastName + " from BridgeLabz!";
@@ -56,6 +64,7 @@ public class GreetingController {
         }
     }
 }
+
 
     @GetMapping("/greeting")
     public Greeting getGreeting() {

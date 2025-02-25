@@ -27,6 +27,20 @@ public class GreetingService {
         return greetingRepository.findAll();
     }
 
+
+    public GreetingEntity updateGreeting(Long id, String newMessage) {
+        Optional<GreetingEntity> existingGreeting = greetingRepository.findById(id);
+
+        if (existingGreeting.isPresent()) {
+            GreetingEntity greeting = existingGreeting.get();
+            greeting.setMessage(newMessage);
+            return greetingRepository.save(greeting);
+        } else {
+            throw new RuntimeException("Greeting not found with ID: " + id);
+        }
+    }
+
+
     public GreetingEntity saveGreetingMessage(String message) {
         GreetingEntity greeting = new GreetingEntity(message);
         return greetingRepository.save(greeting);
@@ -35,8 +49,12 @@ public class GreetingService {
     public GreetingEntity getGreetingById(Long id) {
         Optional<GreetingEntity> greeting = greetingRepository.findById(id);
 
+        return greeting.orElseThrow(() -> new RuntimeException("Greeting not found with ID: " + id));
+
+
     public String getGreetingMessage() {
         return "Hello World";
+
 
     }
 }

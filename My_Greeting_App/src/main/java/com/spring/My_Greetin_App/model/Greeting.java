@@ -1,7 +1,6 @@
 package com.spring.My_Greetin_App.model;
 
 
-
 public class Greeting {
     private String message;
 
@@ -10,7 +9,6 @@ public class Greeting {
 
 public class Greeting {
     private String message;
-
 
     public Greeting(String message) {
         this.message = message;
